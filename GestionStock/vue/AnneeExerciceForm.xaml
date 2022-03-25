@@ -1,0 +1,52 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GestionStock.vue"
+        xmlns:model="clr-namespace:GestionStock.model" x:Class="GestionStock.vue.AnneeExerciceForm"
+        mc:Ignorable="d"
+        Title="AnneeExerciceForm" Height="450" Width="800">
+    <Grid>
+        <Label Content="Annee d'exrcice :" HorizontalAlignment="Left" Margin="10,145,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.641,0.837"/>
+        <DatePicker x:Name="AnneeExerciceFrom" HorizontalAlignment="Left" Margin="135,124,0,0" VerticalAlignment="Top" Height="93" Width="209" IsTodayHighlighted="True"/>
+        <Button x:Name="Add" Content="Add" HorizontalAlignment="Left" Margin="433,373,0,0" VerticalAlignment="Top" Height="26" Width="66" AutomationProperties.Name="Add" Click="Add_Click">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="Black"/>
+                    <GradientStop Color="#FF7CD679" Offset="1"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button Content="Edit" HorizontalAlignment="Left" Margin="512,373,0,0" VerticalAlignment="Top" Height="26" Width="66">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="Black"/>
+                    <GradientStop Color="#FFDAD20F" Offset="1"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button Content="Delete" HorizontalAlignment="Left" Margin="593,373,0,0" VerticalAlignment="Top" Height="26" Width="66">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="Black"/>
+                    <GradientStop Color="#FFE61212" Offset="1"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button x:Name="Close" Content="Cancel" HorizontalAlignment="Left" Margin="673,373,0,0" VerticalAlignment="Top" Height="26" Width="66" Click="Close_Click">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="Black"/>
+                    <GradientStop Color="#FF0E83DE" Offset="1"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <DataGrid x:Name="Grille" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="400,0,0,101" HorizontalAlignment="Left" Width="346" Height="323" VerticalAlignment="Bottom" Initialized="Grille_Initialized">
+            <DataGrid.DataContext>
+                <model:AnneeExercice/>
+            </DataGrid.DataContext>
+        </DataGrid>
+
+    </Grid>
+</Window>

@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup />
+  <ItemGroup>
+    <ApplicationDefinition Update="App.xaml">
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="vue\AnneeExerciceForm.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="vue\ArticlesForm.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="vue\CategoriesForm.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="vue\FournisseurForm.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="MainWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="vue\AnneeExerciceForm.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="vue\ArticlesForm.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="vue\CategoriesForm.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="vue\FournisseurForm.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+</Project>

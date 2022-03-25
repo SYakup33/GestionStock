@@ -1,0 +1,73 @@
+CREATE DATABASE Gestion_Stock ;
+
+USE Gestion_Stock;
+
+CREATE TABLE AnneeExercice(
+	CodeAE INT NOT NULL PRIMARY KEY,
+	AnneeExercice DATE
+);
+
+CREATE TABLE Categories(
+	RefCatgorie INT NOT NULL PRIMARY KEY,
+	NomCategorie VARCHAR(30) NOT NULL,
+	AnneeExercice INT NOT NULL,
+	CONSTRAINT FK_CAT FOREIGN KEY (AnneeExercice) REFERENCES AnneeExercice (CodeAE)
+);
+ALTER TABLE gestion_stock.categories MODIFY COLUMN RefCatgorie int(11) auto_increment NOT NULL;
+
+CREATE TABLE Fournisseurs(
+	RefFournisseur INT NOT NULL PRIMARY KEY,
+	NomFournisseur VARCHAR(50) NOT NULL,
+	NomContact VARCHAR(50) NOT NULL,
+	TitreContact VARCHAR(50) NOT NULL,
+	Adresse VARCHAR(50) NOT NULL,
+	Ville VARCHAR(50) NOT NULL,
+	CodePostal CHAR(5) NOT NULL,
+	DepartementOuRegion CHAR (2) NOT NULL,
+	PaysOuRegion VARCHAR(150) NOT NULL,
+	NumeroTel VARCHAR(150) NOT NULL,
+	Fax VARCHAR(150) NOT NULL,
+	ConditionPaiement INT NOT NULL,
+	Email VARCHAR(250) NOT NULL,
+	Remarques TEXT
+);
+ALTER TABLE gestion_stock.fournisseurs MODIFY COLUMN RefFournisseur int(11) auto_increment NOT NULL;
+SET FOREIGN_KEY_CHECKS = 1;
+
+UPDATE Fournisseurs SET
+CREATE TABLE tArticles(
+	tArticlePK INT NOT NULL PRIMARY KEY,
+	ArticleNom VARCHAR(50) NOT NULL,
+	Fournisseur INT NOT NULL,
+	Categorie INT NOT NULL,
+	DateFab DATE NOT NULL,
+	DateExp DATE NOT NULL,
+	Seuil_de_reapprovisionnement SMALLINT NOT NULL,
+	PrixUnitaireAchat FLOAT NOT NULL,
+	PrixUnitaireVente FLOAT NOT NULL,
+	CONSTRAINT FK_ART_CAT FOREIGN KEY (Categorie) REFERENCES Categories(RefCatgorie),
+	CONSTRAINT FK_ART_FOURN FOREIGN KEY (Fournisseur) REFERENCES Fournisseurs(RefFournisseur)
+);
+ALTER TABLE gestion_stock.tarticles MODIFY COLUMN tArticlePK int(11) auto_increment NOT NULL;
+
+CREATE TABLE tEntres (
+	tEntreesPK INT NOT NULL PRIMARY KEY,
+	tArticlesFK INT NOT NULL,
+	EntreeDate DATE NOT NULL,
+	EntreeQuantite SMALLINT NOT NULL,
+	EntreePU FLOAT NOT NULL,
+	CMUP FLOAT NOT NULL,
+	CONSTRAINT FK_TENTREES_ART FOREIGN KEY (tarticlesFK) REFERENCES tArticles (tArticlePK)
+);
+ALTER TABLE gestion_stock.tentres MODIFY COLUMN tEntreesPK int(11) auto_increment NOT NULL;
+
+CREATE TABLE tSorties (
+	tSortiesPK INT NOT NULL PRIMARY KEY,
+	tArticlesFK INT NOT NULL,
+	SortieDate DATE NOT NULL,
+	SortieQuantite SMALLINT NOT NULL,
+	SortieImputation FLOAT NOT NULL,
+	CMUP FLOAT NOT NULL,
+	CONSTRAINT FK_TSORTIES_ART FOREIGN KEY (tArticlesFK) REFERENCES tArticles (tArticlePK)
+);
+ALTER TABLE gestion_stock.tsorties MODIFY COLUMN tSortiesPK int(11) auto_increment NOT NULL;
